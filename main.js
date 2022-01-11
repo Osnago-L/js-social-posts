@@ -44,7 +44,7 @@ const posts = [
         "media": "https://unsplash.it/600/300?image=24",
         "author": {
             "name": "Luca Formicola",
-            "image": null
+            "image": ""
         },
         "likes": 56,
         "created": date
@@ -66,21 +66,21 @@ const posts = [
 
 for (let i = 0; i < posts.length; i++) {
     createPosts(i)
+    const noProfileDefault = document.querySelectorAll(".post-meta__icon");
+        if(posts[i].author.image == ""){
+            let defaultName = posts[i].author.name.split(" ");
+            
+            noProfileDefault[i].classList.add("profile-pic-default");
+            noProfileDefault[i].innerHTML=`<span>${defaultName[0].charAt(0)}${defaultName[1].charAt(0)}</span>`;
+            
+        };
+    
 }
 
 const likesbuttons = document.querySelectorAll(".like-button");
 const likesTot = document.querySelectorAll(".js-likes-counter");
 const dateFormat = document.querySelectorAll(".post-meta__time");
-const noProfileDefault = document.querySelectorAll(".post-meta__icon");
 
-for (let i = 0; i < posts.length; i++) {
-    if(posts[i].author.image == null){
-        let defaultName = posts[i].author.name.split(" ");
-        noProfileDefault[i].classList.add("profile-pic-default");
-        noProfileDefault[i].innerHTML=`<span>${defaultName[0].charAt(0)}${defaultName[1].charAt(0)}</span>`;
-        
-    };
-}
 
  for (let i = 0; i < posts.length; i++) {
     likesbuttons[i].addEventListener("click",function(){
@@ -88,13 +88,13 @@ for (let i = 0; i < posts.length; i++) {
         if(this.classList.contains("like-button--liked")){
 
             this.classList.remove("like-button--liked");
-            likesTot[i].innerHTML=likeDecrement(i);
+            likesTot[i].innerHTML--;
             dateFormat[i].innerHTML= `${mm}/${dd}/${yyyy}`;
 
         }else{
 
             this.classList.add("like-button--liked");
-            likesTot[i].innerHTML=likeIncrement(i);
+            likesTot[i].innerHTML++;
             dateFormat[i].innerHTML= `${dd}/${mm}/${yyyy}`;
         }
     }); 
