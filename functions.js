@@ -33,6 +33,21 @@ function createPosts(i) {
     `;
 }
 
-function likeIncrement(){
-    
+function likeIncrement(i){
+    let  idCont= i+1;
+    for (let index = 0; index < posts.length; index++) {
+        if(idCont== posts[index].id){
+            let newLikeCont=posts[index].likes+1;
+            return newLikeCont
+        }
+    }
+}
+function likeDecrement(i){
+    let idCont = i+1;
+    for (let index = 0; index < posts.length; index++) {
+        if(idCont== posts[index].id){
+            let newLikeCont=likesTot[i].innerHTML-1;
+            return newLikeCont
+        }
+    }
 }

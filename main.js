@@ -67,12 +67,19 @@ for (let i = 0; i < posts.length; i++) {
 }
 
 const likesbuttons = document.querySelectorAll(".like-button");
+const likesTot = document.querySelectorAll(".js-likes-counter");
+const dateFormat = document.querySelectorAll(".post-meta__time");
 for (let i = 0; i < posts.length; i++) {
     likesbuttons[i].addEventListener("click",function(){
         if(this.classList.contains("like-button--liked")){
             this.classList.remove("like-button--liked");
+            likesTot[i].innerHTML=likeDecrement(i);
+            dateFormat[i].innerHTML= `${mm}/${dd}/${yyyy}`;
+
         }else{
             this.classList.add("like-button--liked");
+            likesTot[i].innerHTML=likeIncrement(i);
+            dateFormat[i].innerHTML= `${dd}/${mm}/${yyyy}`;
         }
     });
 }
